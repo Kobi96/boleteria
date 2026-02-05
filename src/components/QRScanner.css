@@ -1,0 +1,140 @@
+/* src/components/QRScanner.css */
+.qr-scanner-container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  text-align: center;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+h1 {
+  color: #1f2937;
+  margin-bottom: 30px;
+}
+
+.scanner-wrapper {
+  margin: 20px 0;
+}
+
+#qr-reader {
+  border: 2px solid #6ee7b7;
+  border-radius: 12px;
+  overflow: hidden;
+  margin-bottom: 20px;
+  background: white;
+}
+
+/* Botones */
+.btn-primary,
+.btn-secondary {
+  padding: 12px 30px;
+  font-size: 16px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-weight: 600;
+  margin: 10px;
+}
+
+.btn-primary {
+  background: linear-gradient(to right, #34d399, #10b981);
+  color: white;
+  box-shadow: 0 2px 8px rgba(52, 211, 153, 0.3);
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(52, 211, 153, 0.4);
+}
+
+.btn-secondary {
+  background: linear-gradient(to right, #ef4444, #dc2626);
+  color: white;
+}
+
+.btn-secondary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(239, 68, 68, 0.3);
+}
+
+/* Resultado */
+.result-container {
+  margin-top: 30px;
+  animation: fadeIn 0.5s;
+}
+
+.result-box {
+  background-color: #f0fdf4;
+  border: 2px solid #a7f3d0;
+  border-radius: 12px;
+  padding: 20px;
+  margin: 20px 0;
+  word-break: break-all;
+}
+
+.result-box p {
+  margin: 0;
+  color: #374151;
+  font-size: 14px;
+}
+
+/* Loading */
+.loading {
+  margin: 30px 0;
+}
+
+.spinner {
+  border: 4px solid #e5e7eb;
+  border-top: 4px solid #34d399;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  animation: spin 1s linear infinite;
+  margin: 0 auto 20px;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* Error */
+.error-container {
+  margin-top: 20px;
+}
+
+.error-message {
+  background-color: #fef2f2;
+  color: #dc2626;
+  padding: 15px;
+  border-radius: 10px;
+  border-left: 4px solid #ef4444;
+}
+
+/* Animación */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsivo */
+@media (max-width: 600px) {
+  .qr-scanner-container {
+    padding: 10px;
+  }
+
+  #qr-reader {
+    width: 100%;
+  }
+}
