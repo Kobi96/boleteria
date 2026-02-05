@@ -59,7 +59,7 @@ const QRScanner = () => {
       const cuit = localStorage.getItem("boleteria-cuit");
       const password = localStorage.getItem("boleteria-password");
 
-      const response = await axios.post(
+      /*  const response = await axios.post(
         "https://tu-api.com/endpoint",
         {
           qrCode: qrData,
@@ -72,9 +72,9 @@ const QRScanner = () => {
             "X-User-Password": password,
           },
         },
-      );
+      ); */
 
-      console.log("Respuesta de la API:", response.data);
+      /* console.log("Respuesta de la API:", response.data); */
       alert("✅ QR procesado exitosamente");
     } catch (err) {
       console.error("Error al enviar a la API:", err);
