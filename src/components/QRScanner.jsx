@@ -60,6 +60,7 @@ const QRScanner = () => {
       const password = localStorage.getItem("boleteria-password");
 
       const encodedQR = encodeURIComponent(qrData);
+      console.log(encodedQR);
       const response = await axios.get(
         `/qr-api/servicios/lectura/${encodedQR}`,
       );
