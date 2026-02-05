@@ -62,7 +62,7 @@ const QRScanner = () => {
       const encodedQR = encodeURIComponent(qrData);
       console.log(encodedQR);
       const response = await axios.get(
-        `/qr-api/servicios/lectura/${encodedQR}`,
+        `https://staging-dev.sanisidro.gob.ar/api/qr/servicios/lectura/${encodedQR}`,
       );
 
       console.log("Respuesta de la API:", response.data);
