@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Html5QrcodeScanner } from "html5-qrcode";
+import { Html5Qrcode } from "html5-qrcode";
 import axios from "axios";
 import "./QRScanner.css";
 
@@ -11,22 +11,28 @@ const QRScanner = () => {
 
   useEffect(() => {
     if (scanning) {
-      const scanner = new Html5QrcodeScanner(
-        "qr-reader",
-        {
-          fps: 10,
-          qrbox: { width: 250, height: 250 },
-          aspectRatio: 1.0,
-        },
-        false,
-      );
+      const html5Qrcode = new Html5Qrcode("qr-reader");
 
-      scanner.render(onScanSuccess, onScanError);
+      html5Qrcode
+        .start(
+          { facingMode: "environment" },
+          { fps: 10, qrbox: { width: 250, height: 250 }, aspectRatio: 1.0 },
+          onScanSuccess,
+          onScanError,
+        )
+        .catch((err) => {
+          console.error("Error al iniciar la cámara:", err);
+          setError("No se pudo acceder a la cámara trasera.");
+          setScanning(false);
+        });
 
       return () => {
-        scanner.clear().catch((error) => {
-          console.error("Error al limpiar el scanner:", error);
-        });
+        html5Qrcode
+          .stop()
+          .then(() => html5Qrcode.clear())
+          .catch((error) => {
+            console.error("Error al limpiar el scanner:", error);
+          });
       };
     }
   }, [scanning]);
