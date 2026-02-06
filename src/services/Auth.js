@@ -5,7 +5,7 @@ const VALID_ROLES = ["BOE Incidentes"];
 export const loginUser = async (credentials) => {
   try {
     const response = await axios.post(
-      "/api/v1.0/chequeoCredencialesFull",
+      "/tesi-api/v1.0/chequeoCredencialesFull",
       {
         cuit: credentials.cuit,
         password: credentials.password,
