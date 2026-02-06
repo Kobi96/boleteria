@@ -3,8 +3,6 @@ import { Html5Qrcode } from "html5-qrcode";
 import axios from "axios";
 import "./QRScanner.css";
 
-const QR_API_URL = import.meta.env.VITE_QR_API_URL;
-
 const QRScanner = () => {
   const [scanning, setScanning] = useState(false);
   const [scanResult, setScanResult] = useState(null);
@@ -63,7 +61,7 @@ const QRScanner = () => {
       const encodedQR = encodeURIComponent(qrData);
 
       const response = await axios.post(
-        `${QR_API_URL}/servicios/lectura/${encodedQR}`,
+        `/qr-api/servicios/lectura/${encodedQR}`,
       );
 
       console.log("Respuesta de la API:", response.data);

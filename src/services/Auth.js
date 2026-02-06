@@ -1,12 +1,11 @@
 import axios from "axios";
 
-const TESI_API_URL = import.meta.env.VITE_TESI_API_URL;
 const VALID_ROLES = ["BOE Incidentes"];
 
 export const loginUser = async (credentials) => {
   try {
     const response = await axios.post(
-      `${TESI_API_URL}/v1.0/chequeoCredencialesFull`,
+      "/tesi-api/v1.0/chequeoCredencialesFull",
       {
         cuit: credentials.cuit,
         password: credentials.password,

@@ -3,4 +3,20 @@ import react from "@vitejs/plugin-react";
 
 export default defineConfig({
   plugins: [react()],
+  server: {
+    proxy: {
+      "/tesi-api": {
+        target: "https://tesi.sanisidro.gob.ar/api",
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/tesi-api/, ""),
+        secure: false,
+      },
+      "/qr-api": {
+        target: "https://staging-dev.sanisidro.gob.ar/api/qr",
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/qr-api/, ""),
+        secure: false,
+      },
+    },
+  },
 });
