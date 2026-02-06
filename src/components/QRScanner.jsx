@@ -61,7 +61,7 @@ const QRScanner = () => {
 
       const encodedQR = encodeURIComponent(qrData);
       console.log(encodedQR);
-      const response = await axios.get(
+      const response = await axios.post(
         `/qr-api/servicios/lectura/${encodedQR}`,
       );
 
