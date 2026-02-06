@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const VALID_ROLES = ["BOE Patrulla", "BOE Admin"];
+const VALID_ROLES = ["BOE Incidentes"];
 
 export const loginUser = async (credentials) => {
   try {
