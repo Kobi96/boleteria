@@ -4,30 +4,22 @@ const VALID_ROLES = ["BOE Incidentes"];
 
 export const loginUser = async (credentials) => {
   try {
-    const response = await fetch("/tesi-api/v1.0/chequeoCredencialesFull", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-      },
-      body: JSON.stringify({
+    const response = await axios.post(
+      "/tesi-api/v1.0/chequeoCredencialesFull",
+      {
         cuit: credentials.cuit,
         password: credentials.password,
-      }),
-    });
+      },
+      {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      },
+    );
 
-    if (!response.ok) {
-      const errorText = await response.text();
-      console.error("Server error:", errorText);
-      throw new Error(`HTTP error! status: ${response.status}`);
-    }
-
-    const data = await response.json();
-
-    console.log(data);
-
-    if (data?.success && data?.user) {
-      const user = data.user;
+    console.log(response);
+    if (response.data?.success && response.data?.user) {
+      const user = response.data.user;
 
       const hasValidRole = user.roles?.some((role) =>
         VALID_ROLES.includes(role),
@@ -54,7 +46,7 @@ export const loginUser = async (credentials) => {
       return {
         success: false,
         user: null,
-        message: data?.message || "Credenciales inválidas",
+        message: response.data?.message || "Credenciales inválidas",
       };
     }
   } catch (error) {
@@ -62,7 +54,9 @@ export const loginUser = async (credentials) => {
     return {
       success: false,
       user: null,
-      message: error.message || "Error de conexión. Intenta nuevamente.",
+      message:
+        error.response?.data?.message ||
+        "Error de conexión. Intenta nuevamente.",
     };
   }
 };
