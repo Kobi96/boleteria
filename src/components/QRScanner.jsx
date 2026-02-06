@@ -38,7 +38,6 @@ const QRScanner = () => {
   }, [scanning]);
 
   const onScanSuccess = async (decodedText, decodedResult) => {
-    console.log(`Código QR escaneado: ${decodedText}`);
     setScanResult(decodedText);
     setScanning(false);
 
@@ -60,7 +59,7 @@ const QRScanner = () => {
       const password = localStorage.getItem("boleteria-password");
 
       const encodedQR = encodeURIComponent(qrData);
-      console.log(encodedQR);
+
       const response = await axios.post(
         `/qr-api/servicios/lectura/${encodedQR}`,
       );
